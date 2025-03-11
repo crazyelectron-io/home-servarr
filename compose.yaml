@@ -77,8 +77,8 @@ services:
       - 8686:8686
     networks:
       - frontend
-    depends_on:
-      - init-lidarr
+    # depends_on:
+    #   - init-lidarr
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.lidarr.entrypoints=http"
