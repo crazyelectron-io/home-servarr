@@ -1,0 +1,20 @@
+{
+	"data": "ENC[AES256_GCM,data:8DABHVKhIoDmqiU68pFHlcnfenWjnGCv2pCOnqE71YlFnFBcOlj5AgZLO02Eoj3Fe3faFAcJbjcKVMNHXpmG0MEiJM6ORe/b8VeHTlvJY1oFjMa8BBDBLdfg1wE1+ZFSLSBREdLAc+UT1r0fr/0uyJ+yBVQkwJ9ClqcimT6rQpU5W0lWC5VFAUmClwUsho+qIfYQLk6l2DMrgBU1MsBhgnJj7lEngfUNv/CvOtbycuRVMKiSyguCW5ReZZ2nDFIP//R6O8jRG/FSDfjMN2YIeWrNwnemKjXFMBvyaBspPHt1/5J5wW/q0au0hGyNTcBeVkmLeb6+2sAg/PoJWXQjzEkStcluLSgRAuHOYZly86jCZ4LwN8Z8ZEP+1ll/cUPkC3ixuK4oaSTazIx2FNxD8+UCIvY7JmuDz4hpgGRZziyuyW83Xo3NTPyxrv2RkRhdq0C4I63cj1miwMnSKFvmRG2baspBOdnmOrGZ+gVNPWKZhFot3K/t8msXRM2EHL+pKGw355or1b+f217588zE+Nd1/UVsUmJ91Y6LPBmbb81fXAv2e8BTKSjWxTpHO6KxDoRnkmc9BDtqDUlMKQfVZV1uM8ia54uMxCO2sduRwqNM+kPzCRqb+Au+1ZTl92Qw21GW6BWkTz7I1Zs47BHShP1QU2hQJup9eIPXs5fFV5zehWGwN7Uv6DyV5RudrA6I72CLRaiy4O+eltlRXD1R+F+H49Se0ygtt1qTlZuvJqBmjFjB7/lZmznz4mbXCgfs9x4XrX7wpfPsDJCmAve943xjQhhXsk+ow+X3de8jB278rXl8o01ZqQliI+3uu0qrwoQXeNxsv9Y/4ZNeH1UBNMSY06FTrNaYpqts0Icm1RxDQw==,iv:UJ9gFMWd6y4cCr9YF3xWYwiE3pjrm1KV4de5QdadGYw=,tag:6Pnp7GkC0ezbKE+BmAsnGg==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": [
+			{
+				"recipient": "age109fzapgarv59gpyu5tgmwgn7j3hwmfs0dhrz3lrqvjy046jxafnse30kvj",
+				"enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHZDRsc0o0Z3MybmhoemVC\neFR4cmpiWTFMRHczUnVvTEVDNmJaNmZ0VDI4CkxDU3dPc2poQmxGMVYrU3dPTk5u\nZmFTUjQ1bjlET1pZWEhvNlc0UkJHVUUKLS0tIEphc1N0cGxOR2daNWdZV0Y2UWFv\nUmwzRVprVXlpaDFUbnIrYzNYTWZad3cKjunbPv3QkmELKqE269KTSJw3SBTpzSuN\n/3EFDkYn3tI+JUrJwC3fNHmZ7ZnDIkKjVjt7iPSpmyP7dph5TZrVPQ==\n-----END AGE ENCRYPTED FILE-----\n"
+			}
+		],
+		"lastmodified": "2025-03-11T11:04:36Z",
+		"mac": "ENC[AES256_GCM,data:3J9BJYQ0Jf6cUQZJeeK1ibUihkpTGn7uFSckrOY8WMn0w65rYhKvAH+Fc5zSfXrVvcFABdHs9oIDzvgOIREyCria+vGBhlggdsuJkW4n/OL37iUnl+bL2Pg5byDzwPSxL/zaFn9M5G/FLP7SDOI/b9n79wpABH9/w+mBDjZDFb0=,iv:Sj0N6wA7Q4goDeQ7OMlVUaSMPEDWPQUzp1mmQ0lw8pk=,tag:3S0eLVZ50jRGdTC49pG1yg==,type:str]",
+		"pgp": null,
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.9.2"
+	}
+}
