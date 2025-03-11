@@ -222,7 +222,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /mnt/data/appdata:q/sonarr:/config:rw
+      - /mnt/data/appdata/sonarr:/config:rw
       - /mnt/data/media/tv:/tv:rw
       - /mnt/data/media/downloads:/downloads:rw
       - /mnt/data/media/backup/sonarr:/backup:rw
