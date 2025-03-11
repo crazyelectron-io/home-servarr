@@ -47,50 +47,79 @@ services:
       - "traefik.http.routers.bazarr.service=bazarr"
       - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
 
-  # --- Lidarr - Music downloader
-  init-lidarr:
-    container_name: init-lidarr
-    image: debian:stable-slim
-    restart: "no"
-    entrypoint: ["/bin/bash", "-c"]
-    command: ["ls -al /setup && ls -al /config && cp -f /setup/config.xml /config"]
-    env_file: .env
-    volumes:
-      - /mnt/data/appdata/lidarr:/config:rw
-      - ./config/lidarr:/setup
-    networks:
-      - frontend
-  lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
-    container_name: lidarr
+  # # --- Lidarr - Music downloader
+  # init-lidarr:
+  #   container_name: init-lidarr
+  #   image: debian:stable-slim
+  #   restart: "no"
+  #   entrypoint: ["/bin/bash", "-c"]
+  #   command: ["ls -al /setup && ls -al /config && cp -f /setup/config.xml /config"]
+  #   env_file: .env
+  #   volumes:
+  #     - /mnt/data/appdata/lidarr:/config:rw
+  #     - ./config/lidarr:/setup
+  #   networks:
+  #     - frontend
+  # lidarr:
+  #   image: lscr.io/linuxserver/lidarr:latest
+  #   container_name: lidarr
+  #   env_file: .env
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /mnt/data/appdata/lidarr/config:/config:rw
+  #     - /mnt/data/media/music:/music:rw
+  #     - /mnt/data/media/downloads:/downloads:rw
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8686:8686
+  #   networks:
+  #     - frontend
+  #   depends_on:
+  #     - init-lidarr
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.lidarr.entrypoints=http"
+  #     - "traefik.http.routers.lidarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
+  #     - "traefik.http.middlewares.lidarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.lidarr.middlewares=lidarr-https-redirect"
+  #     - "traefik.http.routers.lidarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.lidarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
+  #     - "traefik.http.routers.lidarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.lidarr-secure.tls=true"
+  #     - "traefik.http.routers.lidarr.service=lidarr"
+  #     - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+  headphones:
+    image: lscr.io/linuxserver/headphones:latest
+    container_name: headphones
     env_file: .env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /mnt/data/appdata/lidarr/config:/config:rw
+      - /mnt/data/appdata/headphones/config:/config:rw
       - /mnt/data/media/music:/music:rw
       - /mnt/data/media/downloads:/downloads:rw
     restart: unless-stopped
     ports:
-      - 8686:8686
+      - 8181:8181
     networks:
       - frontend
-    depends_on:
-      - init-lidarr
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.lidarr.entrypoints=http"
-      - "traefik.http.routers.lidarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
-      - "traefik.http.middlewares.lidarr-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.lidarr.middlewares=lidarr-https-redirect"
-      - "traefik.http.routers.lidarr-secure.entrypoints=https"
-      - "traefik.http.routers.lidarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
-      - "traefik.http.routers.lidarr-secure.middlewares=authentik@file"
-      - "traefik.http.routers.lidarr-secure.tls=true"
-      - "traefik.http.routers.lidarr.service=lidarr"
-      - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+      - "traefik.http.routers.headphones.entrypoints=http"
+      - "traefik.http.routers.headphones.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/music`)"
+      - "traefik.http.middlewares.headphones-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.headphones.middlewares=headphones-https-redirect"
+      - "traefik.http.routers.headphones-secure.entrypoints=https"
+      - "traefik.http.routers.headphones-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/music`)"
+      - "traefik.http.routers.headphones-secure.middlewares=authentik@file"
+      - "traefik.http.routers.headphones-secure.tls=true"
+      - "traefik.http.routers.headphones.service=headphones"
+      - "traefik.http.services.headphones.loadbalancer.server.port=8181"
 
   # # --- Prowlarr - Indexer
   # prowlarr:
