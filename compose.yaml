@@ -107,7 +107,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /home/beheerder/docker/prowlarr:/config:rw
+      - /mnt/data/appdata/prowlarr:/config:rw
       - /mnt/data/media/backup/prowlarr:/backup:rw
     ports:
       - 9696:9696
