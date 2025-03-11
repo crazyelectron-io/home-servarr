@@ -37,11 +37,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.bazarr.entrypoints=http"
-      - "traefik.http.routers.bazarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/bazarr`)"
+      - "traefik.http.routers.bazarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/subs`)"
       - "traefik.http.middlewares.bazarr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.bazarr.middlewares=bazarr-https-redirect"
       - "traefik.http.routers.bazarr-secure.entrypoints=https"
-      - "traefik.http.routers.bazarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/bazarr`)"
+      - "traefik.http.routers.bazarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/subs`)"
       - "traefik.http.routers.bazarr-secure.middlewares=authentik@file"
       - "traefik.http.routers.bazarr-secure.tls=true"
       - "traefik.http.routers.bazarr.service=bazarr"
