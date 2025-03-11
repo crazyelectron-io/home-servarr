@@ -3,10 +3,9 @@
 SOPS_AGE_KEY_FILE=/root/.config/sops/age/keys.txt
 
 # decrypt Bazarr configuration file
-# Not needed: done through VS COde extension
-# if [! -f ./config/bazarr/config.yaml ]; then
-#  sops -d ./config/bazarr/config.sops.yaml > ./config/bazarr/config.yaml
-# fi
+if [! -f ./config/bazarr/config.yaml ]; then
+ sops -d ./config/bazarr/config.sops.yaml > ./config/bazarr/config.yaml
+fi
 
 # Decrypt Lidarr configuration file
 # XML (binary) file not supported by VSCode extension
