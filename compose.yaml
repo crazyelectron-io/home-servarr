@@ -1,0 +1,190 @@
+---
+services:
+
+  # --- Bazarr - Subtitle downloader
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:1.5.1
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/data/appdata/bazarr:/config:rw
+      - ./config/bazarr.:/config:rw
+      - /mnt/data/media/tv:/tv:rw
+      - /mnt/data/media/movies:/movies:rw
+      - /mnt/data/media/backup/bazarr:/backup:rw
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    networks:
+      - frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bazarr.entrypoints=http"
+      - "traefik.http.routers.bazarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/bazarr`)"
+      - "traefik.http.middlewares.bazarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.bazarr.middlewares=bazarr-https-redirect"
+      - "traefik.http.routers.bazarr-secure.entrypoints=https"
+      - "traefik.http.routers.bazarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/bazarr`)"
+      - "traefik.http.routers.bazarr-secure.middlewares=authentik@file"
+      - "traefik.http.routers.bazarr-secure.tls=true"
+      - "traefik.http.routers.bazarr.service=bazarr"
+      - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
+
+  # # --- Lidarr - Music downloader
+  # lidarr:
+  #   image: lscr.io/linuxserver/lidarr:latest
+  #   container_name: lidarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /mnt/data/appdata/lidarr/config:/config:rw
+  #     - /mnt/data/media/music:/music:rw
+  #     - /mnt/data/media/downloads:/downloads:rw
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8686:8686
+  #   networks:
+  #     - frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.lidarr.entrypoints=http"
+  #     - "traefik.http.routers.lidarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
+  #     - "traefik.http.middlewares.lidarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.lidarr.middlewares=lidarr-https-redirect"
+  #     - "traefik.http.routers.lidarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.lidarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/lidarr`)"
+  #     - "traefik.http.routers.lidarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.lidarr-secure.tls=true"
+  #     - "traefik.http.routers.lidarr.service=lidarr"
+  #     - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+
+  # # --- Prowlarr - Indexer
+  # prowlarr:
+  #   image: lscr.io/linuxserver/prowlarr:latest
+  #   container_name: prowlarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /home/beheerder/docker/prowlarr/data:/config:rw
+  #     - /mnt/data/media/backup/prowlarr:/backup:rw
+  #   ports:
+  #     - 9696:9696
+  #   restart: unless-stopped
+  #   networks:
+  #     - frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.prowlarr.entrypoints=http"
+  #     - "traefik.http.routers.prowlarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/prowlarr`)"
+  #     - "traefik.http.middlewares.prowlarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.prowlarr.middlewares=prowlarr-https-redirect"
+  #     - "traefik.http.routers.prowlarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.prowlarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/prowlarr`)"
+  #     - "traefik.http.routers.prowlarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.prowlarr-secure.tls=true"
+  #     - "traefik.http.routers.prowlarr.service=prowlarr"
+  #     - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+
+  # # --- Radarr - Movie downloader
+  # radarr:
+  #   image: lscr.io/linuxserver/radarr:5.19.3.9730-ls261
+  #   container_name: radarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - ./data:/config
+  #     - /mnt/data/media/movies:/movies:rw
+  #     - /mnt/data/media/downloads:/downloads:rw
+  #     - /mnt/data/media/backup/radarr:/backup:rw
+  #   ports:
+  #     - 7878:7878
+  #   restart: unless-stopped
+  #   networks:
+  #     - frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.radarr.entrypoints=http"
+  #     - "traefik.http.routers.radarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/radarr`)"
+  #     - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
+  #     - "traefik.http.routers.radarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.radarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/radarr`)"
+  #     - "traefik.http.routers.radarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.radarr-secure.tls=true"
+  #     - "traefik.http.routers.radarr.service=radarr"
+  #     - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+
+  # # --- Readarr - Book downloader
+  # readarr:
+  #   image: lscr.io/linuxserver/readarr:nightly
+  #   container_name: readarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /home/beheerder/docker/readarr/data:/config:rw
+  #     - /mnt/data/media/books:/books:rw
+  #     - /mnt/data/media/downloads:/downloads:rw
+  #     - /mnt/data/media/backup/readarr:/backup:rw
+  #   ports:
+  #     - 8787:8787
+  #   restart: unless-stopped
+  #   networks:
+  #     - frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.readarr.entrypoints=http"
+  #     - "traefik.http.routers.readarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/readarr`)"
+  #     - "traefik.http.middlewares.readarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.readarr.middlewares=readarr-https-redirect"
+  #     - "traefik.http.routers.readarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.readarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/readarr`)"
+  #     - "traefik.http.routers.readarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.readarr-secure.tls=true"
+  #     - "traefik.http.routers.readarr.service=readarr"
+  #     - "traefik.http.services.readarr.loadbalancer.server.port=8787"
+
+  # # --- Sonarr - TV downloader
+  # sonarr:
+  #   image: lscr.io/linuxserver/sonarr:latest
+  #   container_name: sonarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /home/beheerder/docker/sonarr/data:/config:rw
+  #     - /mnt/data/media/tv:/tv:rw
+  #     - /mnt/data/media/downloads:/downloads:rw
+  #     - /mnt/data/media/backup/sonarr:/backup:rw
+  #   ports:
+  #     - 8989:8989
+  #   restart: unless-stopped
+  #   networks:
+  #     - frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.sonarr.entrypoints=http"
+  #     - "traefik.http.routers.sonarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/sonarr`)"
+  #     - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
+  #     - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
+  #     - "traefik.http.routers.sonarr-secure.entrypoints=https"
+  #     - "traefik.http.routers.sonarr-secure.rule=Host(`${MEDA_DOMAIN}`) && PathPrefix(`/sonarr`)"
+  #     - "traefik.http.routers.sonarr-secure.middlewares=authentik@file"
+  #     - "traefik.http.routers.sonarr-secure.tls=true"
+  #     - "traefik.http.routers.sonarr.service=sonarr"
+  #     - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+
+networks:
+  frontend:
+    external: true

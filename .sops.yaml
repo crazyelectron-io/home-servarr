@@ -1,0 +1,5 @@
+creation_rules:
+  - encrypted_regex: '^(apikey|password|caBundle)$'
+    path_regex: 'config/.*\.sops\.yaml$'
+    age: >-
+      age109fzapgarv59gpyu5tgmwgn7j3hwmfs0dhrz3lrqvjy046jxafnse30kvj

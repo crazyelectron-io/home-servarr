@@ -1,0 +1,301 @@
+addic7ed:
+    cookies: ""
+    password: ""
+    user_agent: ""
+    username: ""
+    vip: false
+analytics:
+    enabled: false
+anidb:
+    api_client: ""
+    api_client_ver: 1
+animetosho:
+    anidb_api_client: ""
+    anidb_api_client_ver: 1
+    search_threshold: 6
+anticaptcha:
+    anti_captcha_key: ""
+assrt:
+    token: ""
+auth:
+    apikey: ENC[AES256_GCM,data:IcFV5MZ5+KcDZrAyJxmKmW9f6h82aAALoaICWENf7OM=,iv:DJUwp+DSYmfd4cVykl8X7b4xAVZtEegCMoxIIR1W8DQ=,tag:G4jAOWZKhCEHFpcuF+0rpw==,type:str]
+    password: ENC[AES256_GCM,data:9SluyVewYenQZSyJr+W8,iv:x9gx0l08RO+AyPCz5Eu4vFSGdTFArrGK3s948gPBtms=,tag:EsrCIy4167/TwhXINfFSvQ==,type:str]
+    type: null
+    username: mediauser
+avistaz:
+    cookies: ""
+    user_agent: ""
+backup:
+    day: 6
+    folder: /backup
+    frequency: Weekly
+    hour: 2
+    retention: 60
+betaseries:
+    token: ""
+cinemaz:
+    cookies: ""
+    user_agent: ""
+cors:
+    enabled: true
+deathbycaptcha:
+    password: ""
+    username: ""
+embeddedsubtitles:
+    fallback_lang: en
+    hi_fallback: false
+    included_codecs: []
+    timeout: 600
+    unknown_as_fallback: false
+general:
+    adaptive_searching: false
+    adaptive_searching_delay: 1w
+    adaptive_searching_delta: 3d
+    anti_captcha_provider: null
+    auto_update: false
+    base_url: /bazarr
+    branch: master
+    chmod: "0640"
+    chmod_enabled: false
+    days_to_upgrade_subs: 7
+    debug: false
+    default_und_audio_lang: ""
+    default_und_embedded_subtitles_lang: ""
+    dont_notify_manual_actions: false
+    embedded_subs_show_desired: true
+    embedded_subtitles_parser: ffprobe
+    enabled_integrations: []
+    enabled_providers:
+        - gestdown
+        - opensubtitlescom
+    flask_secret_key: 7e3dfa2fe2e6cfc8ceff62b2b89e3e0f
+    hi_extension: hi
+    ignore_ass_subs: false
+    ignore_pgs_subs: false
+    ignore_vobsub_subs: true
+    ip: 0.0.0.0
+    language_equals: []
+    minimum_score: 95
+    minimum_score_movie: 80
+    movie_default_enabled: true
+    movie_default_profile: 1
+    movie_tag_enabled: false
+    multithreading: true
+    page_size: 50
+    page_size_manual_search: 20
+    parse_embedded_audio_track: true
+    path_mappings: []
+    path_mappings_movie: []
+    port: 6767
+    postprocessing_cmd: ""
+    postprocessing_threshold: 90
+    postprocessing_threshold_movie: 70
+    remove_profile_tags: []
+    serie_default_enabled: true
+    serie_default_profile: 1
+    serie_tag_enabled: false
+    single_language: false
+    skip_hashing: false
+    subfolder: current
+    subfolder_custom: ""
+    subzero_mods: OCR_fixes,common,fix_uppercase
+    theme: auto
+    upgrade_frequency: 12
+    upgrade_manual: true
+    upgrade_subs: true
+    use_embedded_subs: true
+    use_postprocessing: false
+    use_postprocessing_threshold: false
+    use_postprocessing_threshold_movie: false
+    use_radarr: true
+    use_scenename: true
+    use_sonarr: true
+    utf8_encode: true
+    wanted_search_frequency: 6
+    wanted_search_frequency_movie: 6
+hdbits:
+    passkey: ""
+    username: ""
+jimaku:
+    api_key: ""
+    enable_ai_subs: false
+    enable_archives_download: false
+    enable_name_search_fallback: true
+karagarga:
+    f_password: ""
+    f_username: ""
+    password: ""
+    username: ""
+ktuvit:
+    email: ""
+    hashed_password: ""
+legendasdivx:
+    password: ""
+    skip_wrong_fps: false
+    username: ""
+legendasnet:
+    password: ""
+    username: ""
+log:
+    exclude_filter: ""
+    ignore_case: false
+    include_filter: ""
+    use_regex: false
+movie_scores:
+    audio_codec: 3
+    edition: 1
+    hash: 119
+    hearing_impaired: 1
+    release_group: 13
+    resolution: 2
+    source: 7
+    streaming_service: 1
+    title: 60
+    video_codec: 2
+    year: 30
+napiprojekt:
+    only_authors: false
+    only_real_names: false
+napisy24:
+    password: ""
+    username: ""
+opensubtitles:
+    password: ENC[AES256_GCM,data:Du7YBm1L+hE=,iv:yHOZOInv++xvmYQvLSuNzYJyEVujwZX9QM1przMQKnE=,tag:n54DzR2Fto6GmhY9Ue2AtA==,type:str]
+    skip_wrong_fps: false
+    ssl: false
+    timeout: 15
+    use_tag_search: false
+    username: noppes666
+    vip: false
+opensubtitlescom:
+    include_ai_translated: false
+    password: ENC[AES256_GCM,data:uzzKvinfB0Y=,iv:xSmVuvGxzkDY8OlqNRVa8EPMaweUjP786hb1lxvuDt0=,tag:BQ7amVuf9ZslfzoW2GHV8Q==,type:str]
+    use_hash: true
+    username: noppes666
+podnapisi:
+    verify_ssl: true
+postgresql:
+    database: ""
+    enabled: false
+    host: localhost
+    password: ""
+    port: 5432
+    username: ""
+proxy:
+    exclude:
+        - localhost
+        - 127.0.0.1
+    password: ""
+    port: ""
+    type: null
+    url: ""
+    username: ""
+radarr:
+    apikey: ENC[AES256_GCM,data:Dt8q21IW6COv2NVaf49hkcfeGM1ts/iAGgMfXefExP8=,iv:QYhawpPPbfnAVeaQe8kqchrDX/FwC6TB4txy6XTCnek=,tag:uQOBSWvmQ+XU2q9EqZ/dYA==,type:str]
+    base_url: /radarr
+    defer_search_signalr: false
+    excluded_tags: []
+    full_update: Daily
+    full_update_day: 6
+    full_update_hour: 6
+    http_timeout: 60
+    ip: 10.0.0.3
+    movies_sync: 60
+    only_monitored: false
+    port: 7878
+    ssl: false
+    sync_only_monitored_movies: false
+    use_ffprobe_cache: true
+series_scores:
+    audio_codec: 3
+    episode: 30
+    hash: 359
+    hearing_impaired: 1
+    release_group: 14
+    resolution: 2
+    season: 30
+    series: 180
+    source: 7
+    streaming_service: 1
+    video_codec: 2
+    year: 90
+sonarr:
+    apikey: ENC[AES256_GCM,data:tBaFWWJPHKABs9LnjG2SXFpAMWQJpizbyYKWmJG3U+o=,iv:o14zsQZc5LrAyEFpUTZ0BkJVTqKrpTwKsyRt7YvH30E=,tag:rOkh44XP5qvm8WZZm8/v+g==,type:str]
+    base_url: /sonarr
+    defer_search_signalr: false
+    episodes_sync: 15
+    exclude_season_zero: true
+    excluded_series_types: []
+    excluded_tags: []
+    full_update: Daily
+    full_update_day: 6
+    full_update_hour: 5
+    http_timeout: 60
+    ip: 10.0.0.3
+    only_monitored: false
+    port: 8989
+    series_sync: 60
+    ssl: false
+    sync_only_monitored_episodes: false
+    sync_only_monitored_series: false
+    use_ffprobe_cache: true
+subdl:
+    api_key: ""
+subf2m:
+    user_agent: ""
+    verify_ssl: true
+subscene:
+    password: ""
+    username: ""
+subsync:
+    checker:
+        blacklisted_languages: []
+        blacklisted_providers:
+            - whisperai
+    debug: false
+    force_audio: true
+    gss: true
+    max_offset_seconds: 60
+    no_fix_framerate: false
+    subsync_movie_threshold: 70
+    subsync_threshold: 90
+    use_subsync: true
+    use_subsync_movie_threshold: false
+    use_subsync_threshold: false
+titlovi:
+    password: ""
+    username: ""
+titulky:
+    approved_only: false
+    password: ""
+    skip_wrong_fps: false
+    username: ""
+whisperai:
+    endpoint: http://10.0.0.3:333
+    loglevel: INFO
+    pass_video_name: false
+    response: 5
+    timeout: 3600
+xsubs:
+    password: ""
+    username: ""
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age109fzapgarv59gpyu5tgmwgn7j3hwmfs0dhrz3lrqvjy046jxafnse30kvj
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmeWZpeVdQdmlHTVVock5R
+            cmMzZUsyQ3pDZzVJZDU4Q2FqaWVTSnNNZkR3CkEzKzRIUFVtY1A0b3c0QW85Zm55
+            N2RwWTF6ZlhpYmhPRmQvTmpaU3pEL2cKLS0tIGkvNkVKU3BuQmFPUEJMaCt6bVVO
+            S0FIRVBab1ZQSzBUVGRaMVUwRngrTmsKRq9AOA8lM3lQqIVqXTzdar6wjSs0Z6Mu
+            T1dBXyF/oL7xXmNbaeWtvbhq07QXrQvcw3BpM0bItq02PoIQJdi0EQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-11T06:48:26Z"
+    mac: ENC[AES256_GCM,data:n0hHXQcKRZNCLB26EueqVo4v+slhwc/r6RvJrgZL6nvap9ucIHSjZFE+/g6eQthaagIVBAYW48BDb61n0VXnOkmQ5YhYhj5MMryFmEwRRdyVU0YygBSmUjy4tQ2yF2LZ5eaDjDE4YjvJMeQLTBfs+/UmKpgP5ajQEmfEtMrV6lI=,iv:Dheuwa0PpVwJPqS2t6v0afiJtKQf0zShT5J9WIJYcek=,tag:cNx6HbUyDBlAkseLiHh7fQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(apikey|password|caBundle)$
+    version: 3.9.2
