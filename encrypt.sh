@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # encrypt Bazarr configuration file
-sops -e /config/config.yaml > config.sops.yaml
-rm /config/config.yaml
+sops -e ./config/bazarr/config.yaml > ./config/bazarr/config.sops.yaml
+rm ./config/bazarr/config.yaml
