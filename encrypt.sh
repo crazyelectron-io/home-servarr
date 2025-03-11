@@ -12,6 +12,12 @@ if [ ! -f ./config/lidarr/config.sops.xml ]; then
   rm ./config/lidarr/config.xml
 fi
 
+# encrypt Prowlarr configuration file (first time)
+if [ ! -f ./config/prowlarr/config.sops.xml ]; then
+  sops -e --input-type binary ./config/prowlarr/config.xml > ./config/prowlarr/config.sops.xml
+  rm ./config/prowlarr/config.xml
+fi
+
 # encrypt Radarr configuration file (first time)
 if [ ! -f ./config/radarr/config.sops.xml ]; then
   sops -e --input-type binary ./config/radarr/config.xml > ./config/radarr/config.sops.xml

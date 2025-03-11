@@ -88,34 +88,44 @@ services:
     networks:
       - frontend
   
-  # # --- Prowlarr - Indexer
-  # prowlarr:
-  #   image: lscr.io/linuxserver/prowlarr:latest
-  #   container_name: prowlarr
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Europe/Amsterdam
-  #   volumes:
-  #     - /home/beheerder/docker/prowlarr/data:/config:rw
-  #     - /mnt/data/media/backup/prowlarr:/backup:rw
-  #   ports:
-  #     - 9696:9696
-  #   restart: unless-stopped
-  #   networks:
-  #     - frontend
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.prowlarr.entrypoints=http"
-  #     - "traefik.http.routers.prowlarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/prowlarr`)"
-  #     - "traefik.http.middlewares.prowlarr-https-redirect.redirectscheme.scheme=https"
-  #     - "traefik.http.routers.prowlarr.middlewares=prowlarr-https-redirect"
-  #     - "traefik.http.routers.prowlarr-secure.entrypoints=https"
-  #     - "traefik.http.routers.prowlarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/prowlarr`)"
-  #     - "traefik.http.routers.prowlarr-secure.middlewares=authentik@file"
-  #     - "traefik.http.routers.prowlarr-secure.tls=true"
-  #     - "traefik.http.routers.prowlarr.service=prowlarr"
-  #     - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+  # --- Prowlarr - Indexer
+  init-prowlarr:
+    container_name: init-prowlarr
+    image: debian:stable-slim
+    restart: "no"
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["ls -al /setup && ls -al /config && cp -f /setup/config.xml /config"]
+    env_file: .env
+    volumes:
+      - /mnt/data/appdata/prowlarr:/config:rw
+      - ./config/prowlarr:/setup
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /home/beheerder/docker/prowlarr/data:/config:rw
+      - /mnt/data/media/backup/prowlarr:/backup:rw
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    networks:
+      - frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.entrypoints=http"
+      - "traefik.http.routers.prowlarr.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/index`)"
+      - "traefik.http.middlewares.prowlarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.prowlarr.middlewares=prowlarr-https-redirect"
+      - "traefik.http.routers.prowlarr-secure.entrypoints=https"
+      - "traefik.http.routers.prowlarr-secure.rule=Host(`${MEDIA_DOMAIN}`) && PathPrefix(`/index`)"
+      - "traefik.http.routers.prowlarr-secure.middlewares=authentik@file"
+      - "traefik.http.routers.prowlarr-secure.tls=true"
+      - "traefik.http.routers.prowlarr.service=prowlarr"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
 
   # --- Radarr - Movie downloader
   init-radarr:
