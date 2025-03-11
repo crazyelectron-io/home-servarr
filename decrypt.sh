@@ -11,5 +11,8 @@ sops -d --output-type binary ./config/lidarr/config.sops.xml > ./config/lidarr/c
 # Decrypt Radarr configuration file
 sops -d --output-type binary ./config/radarr/config.sops.xml > ./config/radarr/config.xml
 
-# Decrypt Redarr configuration file
+# Decrypt Readarr configuration file
 sops -d --output-type binary ./config/readarr/config.sops.xml > ./config/readarr/config.xml
+
+# Decrypt Sonarr configuration file
+sops -d --output-type binary ./config/sonarr/config.sops.xml > ./config/sonarr/config.xml
