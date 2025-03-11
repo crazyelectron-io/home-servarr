@@ -56,7 +56,7 @@ services:
     command: ["ls -al /setup && ls -al /config && cp -f /setup/config.xml /config"]
     env_file: .env
     volumes:
-      - /mnt/data/appdata/lidarr:/config:rw
+      - /mnt/data/appdata/lidarr/config:/config:rw
       - ./config/lidarr:/setup
     networks:
       - frontend
@@ -142,7 +142,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - ./data:/config
+      - /mnt/data/appdata/radarr:/config
       - /mnt/data/media/movies:/movies:rw
       - /mnt/data/media/downloads:/downloads:rw
       - /mnt/data/media/backup/radarr:/backup:rw
@@ -151,6 +151,8 @@ services:
     restart: unless-stopped
     networks:
       - frontend
+    depends_on:
+      - init-radarr
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.radarr.entrypoints=http"
@@ -185,13 +187,15 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /home/beheerder/docker/readarr/data:/config:rw
+      - /mnt/data/appdata/readarr:/config:rw
       - /mnt/data/media/books:/books:rw
       - /mnt/data/media/downloads:/downloads:rw
       - /mnt/data/media/backup/readarr:/backup:rw
     ports:
       - 8787:8787
     restart: unless-stopped
+    depends_on:
+      - init-readarr
     networks:
       - frontend
     labels:
@@ -228,13 +232,15 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /home/beheerder/docker/sonarr/data:/config:rw
+      - /home/beheerder/docker/sonarr:/config:rw
       - /mnt/data/media/tv:/tv:rw
       - /mnt/data/media/downloads:/downloads:rw
       - /mnt/data/media/backup/sonarr:/backup:rw
     ports:
       - 8989:8989
     restart: unless-stopped
+    depends_on:
+      - init-sonarr
     networks:
       - frontend
     labels:
