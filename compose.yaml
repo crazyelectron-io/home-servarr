@@ -12,8 +12,6 @@ services:
     volumes:
       - /mnt/data/appdata/bazarr:/config:rw
       - ./config/bazarr:/setup
-    networks:
-      - frontend
   bazarr:
     image: lscr.io/linuxserver/bazarr:1.5.1
     container_name: bazarr
@@ -58,8 +56,6 @@ services:
     volumes:
       - /mnt/data/appdata/lidarr/config:/config:rw
       - ./config/lidarr:/setup
-    networks:
-      - frontend
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr
@@ -75,10 +71,8 @@ services:
     restart: unless-stopped
     ports:
       - 8686:8686
-    networks:
-      - frontend
-    # depends_on:
-    #   - init-lidarr
+    depends_on:
+      - init-lidarr
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.lidarr.entrypoints=http"
@@ -91,7 +85,9 @@ services:
       - "traefik.http.routers.lidarr-secure.tls=true"
       - "traefik.http.routers.lidarr.service=lidarr"
       - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
-
+    networks:
+      - frontend
+  
   # # --- Prowlarr - Indexer
   # prowlarr:
   #   image: lscr.io/linuxserver/prowlarr:latest
@@ -132,8 +128,6 @@ services:
     volumes:
       - /mnt/data/appdata/radarr:/config:rw
       - ./config/radarr:/setup
-    networks:
-      - frontend
   radarr:
     image: lscr.io/linuxserver/radarr:5.19.3.9730-ls261
     container_name: radarr
@@ -177,8 +171,6 @@ services:
     volumes:
       - /mnt/data/appdata/readarr:/config:rw
       - ./config/readarr:/setup
-    networks:
-      - frontend
   readarr:
     image: lscr.io/linuxserver/readarr:nightly
     container_name: readarr
@@ -222,8 +214,6 @@ services:
     volumes:
       - /mnt/data/appdata/sonarr:/config:rw
       - ./config/sonarr:/setup
-    networks:
-      - frontend
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -232,7 +222,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - /home/beheerder/docker/sonarr:/config:rw
+      - /mnt/data/appdata:q/sonarr:/config:rw
       - /mnt/data/media/tv:/tv:rw
       - /mnt/data/media/downloads:/downloads:rw
       - /mnt/data/media/backup/sonarr:/backup:rw
