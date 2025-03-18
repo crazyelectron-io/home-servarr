@@ -139,7 +139,7 @@ services:
       - /mnt/data/appdata/radarr:/config:rw
       - ./config/radarr:/setup
   radarr:
-    image: lscr.io/linuxserver/radarr:5.19.3.9730-ls261
+    image: lscr.io/linuxserver/radarr:5.20.2.9777-ls264
     container_name: radarr
     environment:
       - PUID=1000
